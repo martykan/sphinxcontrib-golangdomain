@@ -193,6 +193,8 @@ class GolangObject(ObjectDescription):
             return _('%s (Golang const)') % name
         elif self.objtype == 'type':
             return _('%s (Golang type)') % name
+        elif self.objtype == 'method':
+            return _('%s (Golang method)') % name
         else:
             return ''
 
@@ -392,6 +394,7 @@ class GolangDomain(Domain):
 
     directives = {
         'function':      GolangObject,
+        'method':        GolangObject,
         'type':          GolangObject,
         'var':           GolangObject,
         'const':         GolangObject,
@@ -407,6 +410,7 @@ class GolangDomain(Domain):
     initial_data = {
         'objects': {},    # fullname -> docname, objtype
         'functions' : {}, # fullname -> targetname, docname
+        'methods' : {},   # fullname -> targetname, docname
         'packages': {},    # pkgname -> docname, synopsis, platform, deprecated
     }
     indices = [
